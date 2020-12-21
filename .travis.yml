@@ -1,0 +1,16 @@
+---
+services: docker
+
+before_install:
+  # Upgrade Docker.
+  - sudo apt-get update
+  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
+
+script:
+  # Test building Dockerfile.
+  - docker build -t docker-ansible-centos8 .
+
+  # Test running the container.
+  - docker run --name centos8-container -d --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro docker-ansible-centos8
+  # Verify Ansible is available in the container.
+  - docker exec --tty centos8-container env TERM=xterm ansible --version
