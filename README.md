@@ -2,7 +2,7 @@
 
 [![Docker Automated build](https://img.shields.io/docker/automated/libertxyz/docker-ansible-centos8.svg?maxAge=2592000)](https://hub.docker.com/r/libertxyz/docker-ansible-centos8)
 
-
+[![CI](https://github.com/libert-xyz/docker-ansible-centos8/workflows/Build/badge.svg?branch=master&event=push)](https://github.com/libert-xyz/docker-ansible-centos8/actions?query=workflow%3ABuild)
 
 [![Build Status](https://travis-ci.com/libert-xyz/docker-ansible-centos8.svg?branch=master)](https://travis-ci.com/libert-xyz/docker-ansible-centos8)
 
@@ -32,6 +32,11 @@ platforms:
       - /tmp
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: True
+provisioner:
+  name: ansible
+verifier:
+  name: ansible
 ```
 
 ## Notes
